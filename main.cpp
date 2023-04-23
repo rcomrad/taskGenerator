@@ -132,9 +132,54 @@ D()
 int
 main()
 {
+    std::ifstream inp("../inp.in");
+    std::ofstream out("../out.out");
+
+    out << "problem\n"
+           "\tРазминка;triangle;lcmp.exe;16;1;1000;100\n"
+           "\tSwiper;swiper;lcmp.exe;5;1;1000;100\n"
+           "\tВнеберляндская жизнь;life;ncmp.exe;9;1;1000;100\n"
+           "\tЗазеркалье;labirint;ncmp.exe;6;1;1000;100\n"
+           "END\n\n"
+
+           "competition_problem\n"
+           "\tРазминка;1;1\n"
+           "\tSwiper;1;2\n"
+           "\tВнеберляндская жизнь;1;3\n"
+           "\tЗазеркалье;1;4\n"
+           "\tРазминка;2;1\n"
+           "\tSwiper;2;2\n"
+           "\tВнеберляндская жизнь;2;3\n"
+           "\tЗазеркалье;2;4\n"
+           "END\n\n"
+
+           "competition\n"
+           "\tТестер;2023-04-21 15:00:00;2023-04-22 18:55:00\n"
+           "\tОчный тур;2023-04-23 15:00:00;2023-04-23 18:55:00\n"
+           "END\n\n";
+
+    std::string temp;
+
+    std::string log, pass;
+    out << "user\n\tsubmitor;123;Tester;Testerovich;512;1\n";
+    int cnt = 1;
+    while (inp >> log >> log >> pass)
+    {
+        cnt++;
+        out << "\t" << log << ";" << pass << ";Tester;Testerovich;512;1\n";
+        temp += "\t" + std::to_string(cnt) + ";2" + "\n";
+    }
+    out << "\nEND\n\nuser_competition\n\t1;1\n\t1;2\n" << temp << "END\n";
+
+    return 0;
+}
+
+int
+mainn()
+{
     std::string s;
     std::vector<std::string> tests(1);
-    cin.open("../d");
+    cin.open("../b");
     while (std::getline(cin, s))
     {
         if (s[0] == '-' && s[1] == '-')
@@ -158,7 +203,7 @@ main()
         cin.open("../test/" + std::to_string(cnt) + ".in");
         cout.open("../test/" + std::to_string(cnt) + ".out");
 
-        D();
+        B();
 
         cout << "\n";
         cin.close();
@@ -166,4 +211,6 @@ main()
 
         ++cnt;
     }
+
+    return 0;
 }
