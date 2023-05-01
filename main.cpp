@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include <queue>
@@ -129,8 +130,34 @@ D()
     cout << chese;
 }
 
+void
+E()
+{
+    std::vector<std::string> a(1);
+    while (std::getline(cin, a.back()))
+    {
+        a.emplace_back();
+    }
+    a.pop_back();
+
+    std::vector<int> b(a[0].size());
+    for (int i = 0; i < a.size(); ++i)
+    {
+        for (int j = 0; j < a[i].size(); ++j)
+        {
+            if (a[i][j] == '*') b[j]++;
+        }
+    }
+
+    double sum = 0;
+    for (auto& i : b) sum += i;
+    sum /= b.size();
+    sum -= 1;
+    cout << std::fixed << sum;
+}
+
 int
-main()
+mainn()
 {
     std::ifstream inp("../inp.in");
     std::ofstream out("../out.out");
@@ -175,11 +202,11 @@ main()
 }
 
 int
-mainn()
+main()
 {
     std::string s;
     std::vector<std::string> tests(1);
-    cin.open("../b");
+    cin.open("../e");
     while (std::getline(cin, s))
     {
         if (s[0] == '-' && s[1] == '-')
@@ -203,7 +230,7 @@ mainn()
         cin.open("../test/" + std::to_string(cnt) + ".in");
         cout.open("../test/" + std::to_string(cnt) + ".out");
 
-        B();
+        E();
 
         cout << "\n";
         cin.close();
